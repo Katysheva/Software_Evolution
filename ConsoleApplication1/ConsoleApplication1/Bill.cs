@@ -32,16 +32,39 @@ namespace ConsoleApplication1
         }
         public String statement()
         {
+            double totalAmount = 0;
             int totalBonus = 0;
-            List<Item>.Enumerator items = _items.GetEnumerator();
-            String result = GenerateHeader();
+
+            var result = GenerateHeader();
+
             foreach (var item in _items)
             {
-            }
+                var discount = GetDiscount(item);
+                var currentTotalPrice = item.getPrice() * item.getQuantity() - discount;
+                var bonus = GetBonus(item);
 
-            
+                totalBonus += bonus;
+                totalAmount += currentTotalPrice;
+
+                //показать результаты
+                result += GenerateRow(item, discount, bonus);
+            }
             _customer.receiveBonus(totalBonus);
+
+            //добавить нижний колонтитул
+            result += GenerateFooter(totalAmount, totalBonus);
+
             return result;
+        }
+
+        private object GetDiscount(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        private object GetBonus(Item item)
+        {
+            throw new NotImplementedException();
         }
         public string GenerateHeader()
         {
