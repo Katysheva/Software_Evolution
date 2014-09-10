@@ -9,6 +9,18 @@ namespace ConsoleApplication1
     {
         private List<Item> _items;
         private Customer _customer;
+        private Dictionary<GoodsDiscount, double> discountDict = new Dictionary<GoodsDiscount, double>()
+        {
+            {GoodsDiscount.Regular, 0.03},
+            {GoodsDiscount.Sale, 0.01},
+            {GoodsDiscount.SpecialOffer, 0.005}
+        };
+        private Dictionary<GoodsDiscount, double> bonusDict = new Dictionary<GoodsDiscount, double>()
+        {
+            {GoodsDiscount.Regular, 0.05},
+            {GoodsDiscount.Sale, 0.01},
+            {GoodsDiscount.SpecialOffer, 0}
+        };
         public Bill(Customer customer)
         {
             this._customer = customer;
@@ -20,69 +32,46 @@ namespace ConsoleApplication1
         }
         public String statement()
         {
-            double totalAmount = 0;
             int totalBonus = 0;
             List<Item>.Enumerator items = _items.GetEnumerator();
-            String result = "Счет для " + _customer.getName() + "\n";
-            result += "\t" + "Название" + "\t" + "Цена" +
-            "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
-            "\t" + "Сумма" + "\t" + "Бонус" + "\n";
-            while (items.MoveNext())
+            String result = GenerateHeader();
+            foreach (var item in _items)
             {
-                double thisAmount = 0;
-                double discount = 0;
-                int bonus = 0;
-                Item each = (Item)items.Current;
-                //определить сумму для каждой строки
-                switch (each.getGoods().getPriceCode())
-                {
-                    case Goods.REGULAR:
-                        if (each.getQuantity() > 2)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.03; // 3%
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.05);
-                        break;
-                    case Goods.SPECIAL_OFFER:
-                        if (each.getQuantity() > 10)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.005; // 0.5%
-                        break;
-                    case Goods.SALE:
-                        if (each.getQuantity() > 3)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.01);
-                        break;
-                }
-                // сумма
-                thisAmount = each.getQuantity() * each.getPrice();
-                // используем бонусы
-                if ((each.getGoods().getPriceCode() ==
-                Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
-                    discount =
-                    _customer.useBonus((int)(each.getQuantity() * each.getPrice()));
-                // учитываем скидку
-                thisAmount =
-                each.getQuantity() * each.getPrice() - discount;
-                //показать результаты
-                result += "\t" + each.getGoods().getTitle() + "\t" +
-                "\t" + each.getPrice() + "\t" + each.getQuantity() +
-                "\t" + (each.getQuantity() * each.getPrice()).ToString() +
-                "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
-                "\t" + bonus.ToString() + "\n";
-                totalAmount += thisAmount;
-                totalBonus += bonus;
             }
-            //добавить нижний колонтитул
-            result += "Сумма счета составляет " +
-            totalAmount.ToString() + "\n";
-            result += "Вы заработали " +
-            totalBonus.ToString() + " бонусных балов";
-            //Запомнить бонус клиента
+
+            
             _customer.receiveBonus(totalBonus);
             return result;
         }
+        public string GenerateHeader()
+        {
+            string header = "Счет для " + _customer.getName() + "\n";
+            header += "\t" + "Название" + "\t" + "Цена" +
+            "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
+            "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            return header;
+        }
+        public string GenerateRow(Item item, double discount, int bonus)
+        {
+            /*
+             "\t" + "Название" + "\t" + "Цена" +
+             "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
+             "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            */
+
+            return "\t" + item.getGoods().getTitle() + "\t" +
+                "\t" + item.getPrice() + "\t" + item.getQuantity() +
+                "\t" + (item.getPrice() * item.getQuantity()).ToString() +
+                "\t" + discount.ToString() +
+                "\t" + (item.getPrice() * item.getQuantity() - discount).ToString() +
+                "\t" + bonus.ToString() + "\n";
+        }
+        public string GenerateFooter(double totalAmount, int totalBonus)
+        {
+            string result = "Сумма счета составляет " + totalAmount.ToString() + "\n";
+            result += "Вы заработали " + totalBonus.ToString() + " бонусных балов";
+            return result;
+        }
+
     }
 }

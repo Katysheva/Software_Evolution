@@ -5,11 +5,12 @@ using System.Text;
 
 namespace ConsoleApplication1
 {
+    public enum GoodsDiscount
+    {
+        Regular, Sale, SpecialOffer
+    }
     class Goods
     {
-        public const int REGULAR = 0;
-        public const int SALE = 1;
-        public const int SPECIAL_OFFER = 2;
         private String _title;
         private int _priceCode;
         public Goods(String title, int priceCode)
