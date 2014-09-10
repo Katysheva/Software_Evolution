@@ -36,14 +36,14 @@ namespace ConsoleApplication1
                 result = line.Split(':');
                 result = result[1].Trim().Split();
                 string type = result[1].Trim();
-                int t = 0;
+                GoodsDiscount t = GoodsDiscount.Regular;
                 switch (type)
                 {
-                    case "REG": t = Goods.REGULAR;
+                    case "REG": t = GoodsDiscount.Regular;
                         break;
-                    case "SAL": t = Goods.SALE;
+                    case "SAL": t = GoodsDiscount.Sale;
                         break;
-                    case "SPO": t = Goods.SPECIAL_OFFER;
+                    case "SPO": t = GoodsDiscount.SpecialOffer;
                         break;
                 }
                 g[i] = new Goods(result[0], t);

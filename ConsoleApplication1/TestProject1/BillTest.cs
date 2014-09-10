@@ -36,61 +36,62 @@ namespace TestProject1
         [TestMethod()]
         public void statementTest()
         {
-            var customer = new Customer("Test", 10); 
-            var target = new Bill(customer); 
-            var actual = target.statement();
-            var expected = "Счет для Test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\nСумма счета составляет 0\nВы заработали 0 бонусных балов"; 
+            Customer customer = new Customer("Test", 10);
+            Bill target = new Bill(customer);
+            string actual;
+            actual = target.statement();
+            var expected = "Счет для Test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\nСумма счета составляет 0\nВы заработали 0 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod()]
+        [TestMethod]
         public void Test1()
         {
             var customer = new Customer("Name", 0);
             var bill = new Bill(customer);
             bill.addGoods(new Item(
-                new Goods("Tomato", 1),
+                new Goods("Tomato", GoodsDiscount.Sale),
                 4,
                 30));
             bill.addGoods(new Item(
-                new Goods("Cucumber", 0),
+                new Goods("Cucumber", GoodsDiscount.Regular),
                 5,
                 15));
             bill.addGoods(new Item(
-                new Goods("Radish", 2),
+                new Goods("Radish", GoodsDiscount.SpecialOffer),
                 3,
                 20));
             bill.addGoods(new Item(
-                new Goods("Carrot", 2),
+                new Goods("Carrot", GoodsDiscount.SpecialOffer),
                 6,
                 27));
             bill.addGoods(new Item(
-                new Goods("Potato", 1),
+                new Goods("Potato", GoodsDiscount.Sale),
                 1,
                 18));
             bill.addGoods(new Item(
-                new Goods("Onion", 0),
+                new Goods("Onion", GoodsDiscount.Regular),
                 7,
                 40));
             var actual = bill.statement();
             var expected = "Счет для Name\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tTomato\t\t30\t4\t120\t1.2\t118.8\t1\n\tCucumber\t\t15\t5\t75\t2.25\t72.75\t3\n\tRadish\t\t20\t3\t60\t0\t60\t0\n\tCarrot\t\t27\t6\t162\t0\t162\t0\n\tPotato\t\t18\t1\t18\t0\t18\t0\n\tOnion\t\t40\t7\t280\t8.4\t271.6\t14\nСумма счета составляет 703.15\nВы заработали 18 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
-        
+
         [TestMethod()]
         public void Test2()
         {
             var customer = new Customer("Name", 1000);
             var bill = new Bill(customer);
             bill.addGoods(new Item(
-                new Goods("Tomato", 2),
+                new Goods("Tomato", GoodsDiscount.SpecialOffer),
                 4,
                 30));
             bill.addGoods(new Item(
-                new Goods("Cucumber", 2),
+                new Goods("Cucumber", GoodsDiscount.SpecialOffer),
                 5,
                 15));
             bill.addGoods(new Item(
-                new Goods("Radish", 2),
+                new Goods("Radish", GoodsDiscount.SpecialOffer),
                 3,
                 20));
             var actual = bill.statement();
@@ -104,15 +105,15 @@ namespace TestProject1
             var customer = new Customer("Name", 40);
             var bill = new Bill(customer);
             bill.addGoods(new Item(
-                new Goods("Tomato", 1),
+                new Goods("Tomato", GoodsDiscount.Sale),
                 4,
                 30));
             bill.addGoods(new Item(
-                new Goods("Cucumber", 1),
+                new Goods("Cucumber", GoodsDiscount.Sale),
                 5,
                 15));
             bill.addGoods(new Item(
-                new Goods("Radish", 2),
+                new Goods("Radish", GoodsDiscount.SpecialOffer),
                 3,
                 20));
             var actual = bill.statement();
@@ -126,11 +127,11 @@ namespace TestProject1
             var customer = new Customer("Name", 400);
             var bill = new Bill(customer);
             bill.addGoods(new Item(
-                new Goods("Tomato", 0),
+                new Goods("Tomato", GoodsDiscount.Regular),
                 4,
                 30));
             bill.addGoods(new Item(
-                new Goods("Cucumber", 2),
+                new Goods("Cucumber", GoodsDiscount.SpecialOffer),
                 5,
                 15));
             var actual = bill.statement();
@@ -139,3 +140,4 @@ namespace TestProject1
         }
     }
 }
+

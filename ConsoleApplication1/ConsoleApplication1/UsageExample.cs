@@ -9,8 +9,8 @@ namespace ConsoleApplication1
     {
         static void Example(string[] args)
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SALE);
+            Goods cola = new Goods("Cola", GoodsDiscount.Regular);
+            Goods pepsi = new Goods("Pepsi", GoodsDiscount.Sale);
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 3, 50);
             Customer x = new Customer("test", 10);

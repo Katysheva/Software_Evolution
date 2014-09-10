@@ -11,18 +11,19 @@ namespace ConsoleApplication1
     }
     class Goods
     {
+
         private String _title;
-        private int _priceCode;
-        public Goods(String title, int priceCode)
+        private GoodsDiscount _priceCode;
+        public Goods(String title, GoodsDiscount priceCode)
         {
             _title = title;
             _priceCode = priceCode;
         }
-        public int getPriceCode()
+        public GoodsDiscount getPriceCode()
         {
             return _priceCode;
         }
-        public void setPriceCode(int arg)
+        public void setPriceCode(GoodsDiscount arg)
         {
             _priceCode = arg;
         }

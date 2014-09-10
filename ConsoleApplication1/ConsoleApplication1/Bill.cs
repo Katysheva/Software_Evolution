@@ -30,6 +30,32 @@ namespace ConsoleApplication1
         {
             _items.Add(arg);
         }
+
+        public double GetDiscount(Item item)
+        {
+            var quantity = item.getQuantity();
+            var priceCode = item.getGoods().getPriceCode();
+            double discount = 0;
+            if (CanUseBonus(priceCode, quantity))
+                discount = _customer.useBonus((int)(item.getPrice() * quantity));
+            else
+                discount = quantity > 2 ? item.getPrice() * quantity * discountDict[priceCode] : 0;
+            return discount;
+        }
+        public int GetBonus(Item item)
+        {
+            var bonus = 0;
+            var quantity = item.getQuantity();
+            var priceCode = item.getGoods().getPriceCode();
+            bonus = quantity > 2 && quantity <= 10 ? (int)(item.getPrice() * quantity * bonusDict[priceCode]) : 0;
+            return bonus;
+        }
+
+        public bool CanUseBonus(GoodsDiscount priceCode, int quantity)
+        {
+            return priceCode == GoodsDiscount.SpecialOffer && quantity > 1;
+        }
+
         public String statement()
         {
             double totalAmount = 0;
@@ -57,15 +83,6 @@ namespace ConsoleApplication1
             return result;
         }
 
-        private object GetDiscount(Item item)
-        {
-            throw new NotImplementedException();
-        }
-
-        private object GetBonus(Item item)
-        {
-            throw new NotImplementedException();
-        }
         public string GenerateHeader()
         {
             string header = "Счет для " + _customer.getName() + "\n";
@@ -95,6 +112,5 @@ namespace ConsoleApplication1
             result += "Вы заработали " + totalBonus.ToString() + " бонусных балов";
             return result;
         }
-
     }
 }
