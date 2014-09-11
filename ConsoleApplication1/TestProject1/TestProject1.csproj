@@ -54,9 +54,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApplication1\ConsoleApplication1.csproj">
+    <ProjectReference Include="..\ConsoleApplication1\SWEvolution_lab1.csproj">
       <Project>{2B4B9F07-07B9-42FA-8B88-7B9C88804F07}</Project>
-      <Name>ConsoleApplication1</Name>
+      <Name>SWEvolution_lab1</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

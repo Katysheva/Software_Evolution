@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace ConsoleApplication1
+namespace SWEvolution_lab1
 {
     class Program
     {
@@ -29,24 +29,24 @@ namespace ConsoleApplication1
             line = sr.ReadLine();
             result = line.Split(':');
             int goodsQty = Convert.ToInt32(result[1].Trim());
-            Goods[] g = new Goods[goodsQty];
+            Good[] g = new Good[goodsQty];
             for (int i = 0; i < g.Length; i++)
             {
                 line = sr.ReadLine();
                 result = line.Split(':');
                 result = result[1].Trim().Split();
                 string type = result[1].Trim();
-                GoodsDiscount t = GoodsDiscount.Regular;
+                GoodDiscount t = GoodDiscount.Regular;
                 switch (type)
                 {
-                    case "REG": t = GoodsDiscount.Regular;
+                    case "REG": t = GoodDiscount.Regular;
                         break;
-                    case "SAL": t = GoodsDiscount.Sale;
+                    case "SAL": t = GoodDiscount.Sale;
                         break;
-                    case "SPO": t = GoodsDiscount.SpecialOffer;
+                    case "SPO": t = GoodDiscount.SpecialOffer;
                         break;
                 }
-                g[i] = new Goods(result[0], t);
+                g[i] = new Good(result[0], t);
             }
             // read items count
             line = sr.ReadLine();
@@ -60,9 +60,9 @@ namespace ConsoleApplication1
                 int gid = Convert.ToInt32(result[0].Trim());
                 double price = Convert.ToDouble(result[1].Trim());
                 int qty = Convert.ToInt32(result[2].Trim());
-                b.addGoods(new Item(g[gid - 1], qty, price));
+                b.AddGoods(new Item(g[gid - 1], qty, price));
             }
-            string bill = b.statement();
+            string bill = b.Statement();
             Console.WriteLine(bill);
             Console.ReadKey();
         }

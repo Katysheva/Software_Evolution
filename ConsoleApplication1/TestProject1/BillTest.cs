@@ -1,6 +1,6 @@
-﻿using ConsoleApplication1;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using SWEvolution_lab1;
 
 namespace TestProject1
 {
@@ -39,7 +39,7 @@ namespace TestProject1
             Customer customer = new Customer("Test", 10);
             Bill target = new Bill(customer);
             string actual;
-            actual = target.statement();
+            actual = target.Statement();
             var expected = "Счет для Test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\nСумма счета составляет 0\nВы заработали 0 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
@@ -48,31 +48,31 @@ namespace TestProject1
         {
             var customer = new Customer("Name", 0);
             var bill = new Bill(customer);
-            bill.addGoods(new Item(
-                new Goods("Tomato", GoodsDiscount.Sale),
+            bill.AddGoods(new Item(
+                new Good("Tomato", GoodDiscount.Sale),
                 4,
                 30));
-            bill.addGoods(new Item(
-                new Goods("Cucumber", GoodsDiscount.Regular),
+            bill.AddGoods(new Item(
+                new Good("Cucumber", GoodDiscount.Regular),
                 5,
                 15));
-            bill.addGoods(new Item(
-                new Goods("Radish", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Radish", GoodDiscount.SpecialOffer),
                 3,
                 20));
-            bill.addGoods(new Item(
-                new Goods("Carrot", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Carrot", GoodDiscount.SpecialOffer),
                 6,
                 27));
-            bill.addGoods(new Item(
-                new Goods("Potato", GoodsDiscount.Sale),
+            bill.AddGoods(new Item(
+                new Good("Potato", GoodDiscount.Sale),
                 1,
                 18));
-            bill.addGoods(new Item(
-                new Goods("Onion", GoodsDiscount.Regular),
+            bill.AddGoods(new Item(
+                new Good("Onion", GoodDiscount.Regular),
                 7,
                 40));
-            var actual = bill.statement();
+            var actual = bill.Statement();
             var expected = "Счет для Name\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tTomato\t\t30\t4\t120\t1.2\t118.8\t1\n\tCucumber\t\t15\t5\t75\t2.25\t72.75\t3\n\tRadish\t\t20\t3\t60\t0\t60\t0\n\tCarrot\t\t27\t6\t162\t0\t162\t0\n\tPotato\t\t18\t1\t18\t0\t18\t0\n\tOnion\t\t40\t7\t280\t8.4\t271.6\t14\nСумма счета составляет 703.15\nВы заработали 18 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
@@ -82,19 +82,19 @@ namespace TestProject1
         {
             var customer = new Customer("Name", 1000);
             var bill = new Bill(customer);
-            bill.addGoods(new Item(
-                new Goods("Tomato", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Tomato", GoodDiscount.SpecialOffer),
                 4,
                 30));
-            bill.addGoods(new Item(
-                new Goods("Cucumber", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Cucumber", GoodDiscount.SpecialOffer),
                 5,
                 15));
-            bill.addGoods(new Item(
-                new Goods("Radish", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Radish", GoodDiscount.SpecialOffer),
                 3,
                 20));
-            var actual = bill.statement();
+            var actual = bill.Statement();
             var expected = "Счет для Name\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tTomato\t\t30\t4\t120\t120\t0\t0\n\tCucumber\t\t15\t5\t75\t75\t0\t0\n\tRadish\t\t20\t3\t60\t60\t0\t0\nСумма счета составляет 0\nВы заработали 0 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
@@ -104,19 +104,19 @@ namespace TestProject1
         {
             var customer = new Customer("Name", 40);
             var bill = new Bill(customer);
-            bill.addGoods(new Item(
-                new Goods("Tomato", GoodsDiscount.Sale),
+            bill.AddGoods(new Item(
+                new Good("Tomato", GoodDiscount.Sale),
                 4,
                 30));
-            bill.addGoods(new Item(
-                new Goods("Cucumber", GoodsDiscount.Sale),
+            bill.AddGoods(new Item(
+                new Good("Cucumber", GoodDiscount.Sale),
                 5,
                 15));
-            bill.addGoods(new Item(
-                new Goods("Radish", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Radish", GoodDiscount.SpecialOffer),
                 3,
                 20));
-            var actual = bill.statement();
+            var actual = bill.Statement();
             var expected = "Счет для Name\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tTomato\t\t30\t4\t120\t1.2\t118.8\t1\n\tCucumber\t\t15\t5\t75\t0.75\t74.25\t0\n\tRadish\t\t20\t3\t60\t40\t20\t0\nСумма счета составляет 213.05\nВы заработали 1 бонусных балов";
             Assert.AreEqual(expected, actual);
         }
@@ -126,15 +126,15 @@ namespace TestProject1
         {
             var customer = new Customer("Name", 400);
             var bill = new Bill(customer);
-            bill.addGoods(new Item(
-                new Goods("Tomato", GoodsDiscount.Regular),
+            bill.AddGoods(new Item(
+                new Good("Tomato", GoodDiscount.Regular),
                 4,
                 30));
-            bill.addGoods(new Item(
-                new Goods("Cucumber", GoodsDiscount.SpecialOffer),
+            bill.AddGoods(new Item(
+                new Good("Cucumber", GoodDiscount.SpecialOffer),
                 5,
                 15));
-            var actual = bill.statement();
+            var actual = bill.Statement();
             var expected = "Счет для Name\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tTomato\t\t30\t4\t120\t3.6\t116.4\t6\n\tCucumber\t\t15\t5\t75\t75\t0\t0\nСумма счета составляет 116.4\nВы заработали 6 бонусных балов";
             Assert.AreEqual(expected, actual);
         }

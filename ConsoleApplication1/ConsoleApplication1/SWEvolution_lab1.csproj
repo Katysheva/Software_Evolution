@@ -8,7 +8,7 @@
     <ProjectGuid>{2B4B9F07-07B9-42FA-8B88-7B9C88804F07}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication1</RootNamespace>
+    <RootNamespace>SWEvolution_lab1</RootNamespace>
     <AssemblyName>ConsoleApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="Bill.cs" />
     <Compile Include="Customer.cs" />
-    <Compile Include="Goods.cs" />
+    <Compile Include="Good.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
