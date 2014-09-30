@@ -18,7 +18,6 @@ namespace SWEvolution_lab1
             Price = price;
         }
 
-
         public double GetDiscount(Customer _customer)
         {
             return Good.GetDiscount(_customer, Quantity, Price);

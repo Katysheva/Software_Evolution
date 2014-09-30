@@ -49,27 +49,27 @@ namespace TestProject1
             var customer = new Customer("Name", 0);
             var bill = new Bill(customer);
             bill.AddGoods(new Item(
-                new Good("Tomato", GoodDiscount.Sale),
+                new SaleGood("Tomato"),
                 4,
                 30));
             bill.AddGoods(new Item(
-                new Good("Cucumber", GoodDiscount.Regular),
+                new RegularGood("Cucumber"),
                 5,
                 15));
             bill.AddGoods(new Item(
-                new Good("Radish", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Radish"),
                 3,
                 20));
             bill.AddGoods(new Item(
-                new Good("Carrot", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Carrot"),
                 6,
                 27));
             bill.AddGoods(new Item(
-                new Good("Potato", GoodDiscount.Sale),
+                new SaleGood("Potato"),
                 1,
                 18));
             bill.AddGoods(new Item(
-                new Good("Onion", GoodDiscount.Regular),
+                new RegularGood("Onion"),
                 7,
                 40));
             var actual = bill.Statement();
@@ -83,15 +83,15 @@ namespace TestProject1
             var customer = new Customer("Name", 1000);
             var bill = new Bill(customer);
             bill.AddGoods(new Item(
-                new Good("Tomato", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Tomato"),
                 4,
                 30));
             bill.AddGoods(new Item(
-                new Good("Cucumber", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Cucumber"),
                 5,
                 15));
             bill.AddGoods(new Item(
-                new Good("Radish", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Radish"),
                 3,
                 20));
             var actual = bill.Statement();
@@ -105,15 +105,15 @@ namespace TestProject1
             var customer = new Customer("Name", 40);
             var bill = new Bill(customer);
             bill.AddGoods(new Item(
-                new Good("Tomato", GoodDiscount.Sale),
+                new SaleGood("Tomato"),
                 4,
                 30));
             bill.AddGoods(new Item(
-                new Good("Cucumber", GoodDiscount.Sale),
+                new SaleGood("Cucumber"),
                 5,
                 15));
             bill.AddGoods(new Item(
-                new Good("Radish", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Radish"),
                 3,
                 20));
             var actual = bill.Statement();
@@ -127,11 +127,11 @@ namespace TestProject1
             var customer = new Customer("Name", 400);
             var bill = new Bill(customer);
             bill.AddGoods(new Item(
-                new Good("Tomato", GoodDiscount.Regular),
+                new RegularGood("Tomato"),
                 4,
                 30));
             bill.AddGoods(new Item(
-                new Good("Cucumber", GoodDiscount.SpecialOffer),
+                new SpecialOfferGood("Cucumber"),
                 5,
                 15));
             var actual = bill.Statement();

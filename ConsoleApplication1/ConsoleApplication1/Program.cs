@@ -36,17 +36,15 @@ namespace SWEvolution_lab1
                 result = line.Split(':');
                 result = result[1].Trim().Split();
                 string type = result[1].Trim();
-                GoodDiscount t = GoodDiscount.Regular;
                 switch (type)
                 {
-                    case "REG": t = GoodDiscount.Regular;
+                    case "REG": g[i] = new RegularGood(result[0]);
                         break;
-                    case "SAL": t = GoodDiscount.Sale;
+                    case "SAL": g[i] = new SaleGood(result[0]);
                         break;
-                    case "SPO": t = GoodDiscount.SpecialOffer;
+                    case "SPO": g[i] = new SpecialOfferGood(result[0]);
                         break;
                 }
-                g[i] = new Good(result[0], t);
             }
             // read items count
             line = sr.ReadLine();
