@@ -19,8 +19,6 @@ namespace SWEvolution_lab1
             _items.Add(arg);
         }
 
-
-
         public String Statement()
         {
             double totalAmount = 0;
