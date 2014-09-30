@@ -45,18 +45,24 @@
   <ItemGroup>
     <Compile Include="Bill.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="Behaviors\DefaultBonusBehavior.cs" />
+    <Compile Include="Behaviors\DefaultDiscountBehavior.cs" />
     <Compile Include="Good.cs" />
+    <Compile Include="Behaviors\IBonusCalcBehavior.cs" />
+    <Compile Include="Behaviors\IDiscountCalcBehavior.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegularGood.cs" />
-    <Compile Include="SaleGood.cs" />
-    <Compile Include="SpecialOfferGood.cs" />
+    <Compile Include="Goods\RegularGood.cs" />
+    <Compile Include="Goods\SaleGood.cs" />
+    <Compile Include="Goods\SpecialOfferGood.cs" />
     <Compile Include="UsageExample.cs" />
+    <Compile Include="Behaviors\WithoutBonusDiscountBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BillInfo.txt" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
